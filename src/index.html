@@ -9,17 +9,19 @@
     <input id="USNumber" type="text">
     <h5>Which Currency Do You Want To Exchange:</h5>
     <select class="form-control" id="currency">
+      <Option>Choose a Currency</Option>
       <option value="EUR">Euro(EUR)</option>
-      <option value="JPY">Japanene Yen(JPY)</option>
+      <option value="JPY">Japanese Yen(JPY)</option>
       <option value="MXN">Peso(MXN)</option>
       <option value="THB">Thai Baht(THB)</option>
       <option value="CNY">China Yuan(CNY)</option>
       
     </select>
     <button class="btn-success" id="exchange">Get Currency exchange</button>
+    <span id="output">
     <div class="showErrors"></div>
     <div class="showExchange"></div>
-    
+    </span>
   </div>
 </body>
 </html>

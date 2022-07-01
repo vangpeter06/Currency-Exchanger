@@ -10,14 +10,23 @@ function getElements(response) {
   let dollar = $('#USNumber').val();
   let inputCurrency = $('#currency').val();
   let currencyArray = [];
-  console.log(inputCurrency);
-  console.log(response);
-  for (let i = 0; i < response.conversion_rates.length; i++) {
+  console.log(response.conversion_rates);
+
+
+  /** test */
+  //for (currencyRate of response.conversion_rates) {
+  //if(inputCurrency == )
+  //}
+//
+  /** end test */
+ 
+  if (response["conversion_rates"][inputCurrency] === undefined) { 
+    ('.showErrors').text(`The Currency You selected is not available`);
+    for (let i = 0; i < response.conversion_rates.length; i++) {
     currencyArray.push(response.conversion_rates);
+    console.log(response.conversion_rates)
+    } 
     console.log(currencyArray);
-  }
-  if (response["conversion_rates"][inputCurrency] === undefined) {
-    $('.showErrors').text(`The Currency You selected is not available`);
 
     $('.showExchange').text(`The exchange for Euro is ${(response.conversion_rates.EUR * dollar).toFixed(2)} Euro`);
     $('.showExchange').text(`The exchange for Japanese Yen is ${(response.conversion_rates.JPY * dollar).toFixed(2)} Yen`);
