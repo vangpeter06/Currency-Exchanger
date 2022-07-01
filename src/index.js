@@ -2,28 +2,33 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import CurrencyService from './currencyService';
+
+
+
+function getElements(response) {
+  const USDollar = $('#USNumber').val();
+  if (response.conversion_rates) {
+    $('.showExchange').text(`The exchange for Euro is ${response.conversion_rates.EUR * USDollar}`)
+  } else {
+    $('.showError').text(`There was a error: ${response}`)
+  }
+}
+
+async function makeApiCall() {
+  const response = await CurrencyService.currencyExchange();
+  getElements(response)
+}
 
 $(document).ready(function() {
-  $('#weatherLocation').click(function() {
-    const city = $('#location').val();
-    $('#location').val("");
-
-    let request = new XMLHttpRequest();
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
-
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        getElements(response);
-      }
-    }
-
-    request.open("GET", url, true);
-    request.send();
-
-    function getElements(response) {
-      $('.showHumidity').text(`The humidity in ${city} is ${response.main.humidity}%`);
-      $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
-    }
+  $('#exchange').click(function() {
+  
+    makeApiCall();
   });
 });
+
+
+
+
+
+
