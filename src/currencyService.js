@@ -11,4 +11,4 @@ export default class CurrencyService {
       return error.message;
     })
   }
-}
+}    
