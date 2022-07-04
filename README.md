@@ -1,6 +1,6 @@
 # _{Currency Exchanger}_
 
-#### By _**{List of contributors}**_
+#### By _**{Peter Vang}**_
 
 #### _{This is a application that lets to covert USD Dollar to other currency using api call.}_
 
