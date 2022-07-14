@@ -5,12 +5,13 @@ import './css/styles.css';
 import CurrencyService from './currencyService';
 
 function getElements(response, dollar, currencyCode) {
-  if (response["conversion_rates"][currencyCode] === undefined) { 
-    $('.showErrors').text(`The Currency You selected is not available`);
+  console.log(response);
+  if (response["conversion_rates"] === undefined) { 
+    $('.showErrors').text(`There was a error: ${response}`);
   } else if (response.result === "success") {
     $(".showExchange").text(`${dollar} USD = ${(response["conversion_rates"][currencyCode]*[dollar]).toFixed(2)} ${currencyCode}`);  
   } else {
-    $('.showError').text(`There was a error: ${response}`);
+    $('.showError').text(`There was a error: ${response}`); 
   }
 }
 
@@ -18,6 +19,7 @@ function clearFields() {
   $('.showExchange').text("");
   $('.showError').text("");
 }
+
 async function makeApiCall(dollar, currencyCode) {
   const response = await CurrencyService.currencyExchange();
   getElements(response, dollar, currencyCode);
@@ -33,9 +35,3 @@ $(document).ready(function() {
     $("#output").show();
   });
 });
-
-
-
-
-
-
